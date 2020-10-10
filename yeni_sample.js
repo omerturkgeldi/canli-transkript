@@ -94,73 +94,72 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
                 dersListesiHTMLStr += `
             
-    <tr id="ders_tr_${ders.ID}">
-    <td>
-        <input style="width:100%; id="ders_Adi_${ders.ID}"; class="transparent-input col-2 col-lg-12 col-md-12 col-sm-6 " type=" text " placeholder="Ders ${index2 +1}">
-    </td>
-    <td>
-        <div style="align-items: center; " class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12">
-                <select id="ddselect_kredi_${ders.ID}" class="form-control">
-                    <option value="">X</option>   
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                    <option value="11">11</option>
-                    <option value="12">12</option>
-                    <option value="13">13</option>
-                    <option value="14">14</option>
-                    <option value="15">15</option>
-                    <option value="16">16</option>
-                    <option value="17">17</option>
-                    <option value="18">18</option>
-                    <option value="19">19</option>
-                    <option value="20">20</option>
-                    <option value="21">21</option>
-                    <option value="22">22</option>
-                    <option value="23">23</option>
-                    <option value="24">24</option>
-                    <option value="25">25</option>
-                    <option value="26">26</option>
-                    <option value="27">27</option>
-                    <option value="28">28</option>
-                    <option value="29">29</option>
-                    <option value="30">30</option>
-                </select>
-            </div>
-        </div>
-    </td>
-    <td>
-        <div class="row ">
-            <div class="col-lg-12 col-md-12 col-sm-12">
-                <select id="ddselect_harf_${ders.ID}" class="form-control ">
-                        <option value="">X</option>          
-                        <option value="AA">AA</option>
-                        <option value="BA">BA</option>
-                        <option value="BB">BB</option>
-                        <option value="CB">CB</option>
-                        <option value="CC">CC</option>
-                        <option value="DC">DC</option>
-                        <option value="DD">DD</option>
-                        <option value="FD">FD</option>
-                        <option value="FF">FF</option>
-                    </select>
-            </div>
-        </div>
-    </td>
-    <td>
-        
-        <span id="delBtn_${ders.ID}" class="material-icons">clear</span>
-    </td>
-</tr>
-
+                    <tr id="ders_tr_${ders.ID}">
+                    <td>
+                        <input style="width:100%; id="ders_Adi_${ders.ID}"; class="transparent-input col-2 col-lg-12 col-md-12 col-sm-6 " type=" text " placeholder="Ders ${index2 +1}">
+                    </td>
+                    <td>
+                        <div style="align-items: center; " class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                <select id="ddselect_kredi_${ders.ID}" class="form-control">
+                                    <option value="">X</option>   
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">12</option>
+                                    <option value="13">13</option>
+                                    <option value="14">14</option>
+                                    <option value="15">15</option>
+                                    <option value="16">16</option>
+                                    <option value="17">17</option>
+                                    <option value="18">18</option>
+                                    <option value="19">19</option>
+                                    <option value="20">20</option>
+                                    <option value="21">21</option>
+                                    <option value="22">22</option>
+                                    <option value="23">23</option>
+                                    <option value="24">24</option>
+                                    <option value="25">25</option>
+                                    <option value="26">26</option>
+                                    <option value="27">27</option>
+                                    <option value="28">28</option>
+                                    <option value="29">29</option>
+                                    <option value="30">30</option>
+                                </select>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="row ">
+                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                <select id="ddselect_harf_${ders.ID}" class="form-control ">
+                                        <option value="">X</option>          
+                                        <option value="AA">AA</option>
+                                        <option value="BA">BA</option>
+                                        <option value="BB">BB</option>
+                                        <option value="CB">CB</option>
+                                        <option value="CC">CC</option>
+                                        <option value="DC">DC</option>
+                                        <option value="DD">DD</option>
+                                        <option value="FD">FD</option>
+                                        <option value="FF">FF</option>
+                                    </select>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        
+                        <span id="delBtn_${ders.ID}" data-id="${ders.ID}" class="material-icons deleteDers">clear</span>
+                    </td>
+                </tr>
             `;
             }
 
@@ -171,37 +170,37 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 ${index+1}.Dönem <span id="ders_ekle_button_${donem.ID}" class="material-icons">add_circle_outline</span>
             </h1>
             
-<table class="table table-striped table-bordered col-lg-6" id="donem_table_${donem.ID}">
+                <table class="table table-striped table-bordered col-lg-6" id="donem_table_${donem.ID}">
 
 
-<thead>
-    <tr>
-        <th class="col-lg-7 col-md-6 col-sm-8 col-2" style="text-align: center;">Ders Adı</th>
-        <th class="col-lg-2 col-md-3 col-sm-2 col-5" style="text-align: center;">Kredi</th>
-        <th class="col-lg-2 col-md-3 col-sm-2 col-5" style="text-align: center;">Not</th>
-        <th class="col-lg-1" style="text-align: center;">Sil</th>
-    </tr>
-</thead>
-<tbody id="donem_tbody_${donem.ID}">
-    ${dersListesiHTMLStr}
-</tbody>
-</table>
-<!-- Dönem Bilgileri  -->
-         <table class="table table-striped ">
-             <thead>
-                 <th>Alınan Kredi</th>
-                 <th>YANO</th>
-                 <th>GANO</th>
-             </thead>
-             <tbody id="donem_notları_${donem.ID}">
-                 <td id="toplam_kredi_donem_${donem.ID}">---</td>
-                 <td id="yano_donem_${donem.ID}">---</td>
-                 <td id="gano_donem_${donem.ID}">---</td>
-             </tbody>
-         </table>
-         <!-- Dönem Bilgileri Bitiş -->
+                <thead>
+                    <tr>
+                        <th class="col-lg-7 col-md-6 col-sm-8 col-2" style="text-align: center;">Ders Adı</th>
+                        <th class="col-lg-2 col-md-3 col-sm-2 col-5" style="text-align: center;">Kredi</th>
+                        <th class="col-lg-2 col-md-3 col-sm-2 col-5" style="text-align: center;">Not</th>
+                        <th class="col-lg-1" style="text-align: center;">Sil</th>
+                    </tr>
+                </thead>
+                <tbody id="donem_tbody_${donem.ID}">
+                    ${dersListesiHTMLStr}
+                </tbody>
+                </table>
+                <!-- Dönem Bilgileri  -->
+                        <table class="table table-striped ">
+                            <thead>
+                                <th>Alınan Kredi</th>
+                                <th>YANO</th>
+                                <th>GANO</th>
+                            </thead>
+                            <tbody id="donem_notları_${donem.ID}">
+                                <td id="toplam_kredi_donem_${donem.ID}">---</td>
+                                <td id="yano_donem_${donem.ID}">---</td>
+                                <td id="gano_donem_${donem.ID}">---</td>
+                            </tbody>
+                        </table>
+                        <!-- Dönem Bilgileri Bitiş -->
 
-</div>
+                </div>
  
         `;
         }
@@ -212,8 +211,14 @@ document.addEventListener("DOMContentLoaded", function(event) {
         // var objFromStorage = JSON.parse(localStorage.getItem("Notlar"));
 
         // console.log(objFromStorage);
+        setClickEvents();
 
-
+    }
+    function setClickEvents(){
+        $('.deleteDers').unbind("click").on("click",function(){
+            let id = $(this).data("id");
+            console.log("Silinecek ders IDsi:",id);
+        });
     }
 
     function hesapla() {
@@ -503,7 +508,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         </td>
         <td>
             
-            <span id="delBtn_${ders.ID}" class="material-icons">clear</span>
+            <span id="delBtn_${ders.ID}" data-id="${ders.ID}" class="material-icons deleteDers">clear</span>
         </td>
     </tr>
     
@@ -513,6 +518,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
                 let donemSec = document.getElementById("donem_tbody_" + `${donem.ID}`);
                 donemSec.innerHTML += dersListesiHTMLStr;
+                setClickEvents();
 
             });
         }
