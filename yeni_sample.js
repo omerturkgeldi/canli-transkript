@@ -1,6 +1,18 @@
-document.addEventListener("DOMContentLoaded", function(event) {
+var donemListesi = [];
 
-    var donemListesi = [];
+function deleteFromList(list,tobeDeletedID){
+    var newList = [];
+    for (let index = 0; index < silinecekListe.length; index++) {
+        const donem = silinecekListe[index];
+        if(donem.ID != silinecekID){
+            newList.push(donem);
+        }
+    }
+    return newList;
+}
+
+
+document.addEventListener("DOMContentLoaded", function(event) {
 
     function donemEkle(order) {
         var donem = new Object();
@@ -167,7 +179,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
             <div id="tableContainer_${index}" class="col-lg-6 col-md-6 col-sm-12 col-12">
              
             <h1 style="background-color: rgb(0, 166, 164); text-align: center; margin: 0; color: rgb(232, 249, 250);" class="well-sm">
-                ${index+1}.Dönem <span id="ders_ekle_button_${donem.ID}" class="material-icons">add_circle_outline</span>
+                ${index+1}.Dönem <span class="material-icons dersEkleButton" data-id="${donem.ID}">add_circle_outline</span>
             </h1>
             
                 <table class="table table-striped table-bordered col-lg-6" id="donem_table_${donem.ID}">
@@ -206,7 +218,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         }
 
         document.getElementById("cont_1").innerHTML += htmlStr;
-        console.log(donemListesi);
+        // console.log(donemListesi);
         localStorage.setItem("Notlar", JSON.stringify(donemListesi));
         // var objFromStorage = JSON.parse(localStorage.getItem("Notlar"));
 
@@ -215,11 +227,25 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     }
     function setClickEvents(){
+        // Ders Silme buton eventi:
         $('.deleteDers').unbind("click").on("click",function(){
             let id = $(this).data("id");
             console.log("Silinecek ders IDsi:",id);
         });
-    }
+
+        // Yeni ders ekleme buton eventi:
+        $('.dersEkleButton').unbind("click").on("click",function(){
+            let donemID = $(this).data("id");
+            var donem = donemListesi.find(x => x.ID == donemID);
+            console.log("Dönemi buldum:",donem);
+            // var ders = dersEkle(id);
+            // donem.DersListesi.push(ders);
+            // console.log(donemListesi);
+            // localStorage.setItem("Notlar", JSON.stringify(donemListesi));
+            
+        });
+    }  
+
 
     function hesapla() {
         let yanoToplam = 0;
@@ -433,94 +459,21 @@ document.addEventListener("DOMContentLoaded", function(event) {
             let donem = donemListesi[index];
             let ekle_button_ID = document.getElementById("ders_ekle_button_" + `${donem.ID}`);
 
-            ekle_button_ID.addEventListener("click", function() {
+            //ekle_button_ID.addEventListener("click", function() {
 
-                var ders = dersEkle(donem.ID);
-                donem.DersListesi.push(ders);
-                console.log(donemListesi);
-                localStorage.setItem("Notlar", JSON.stringify(donemListesi));
+                // var ders = dersEkle(donem.ID);
+                // donem.DersListesi.push(ders);
+                // //console.log(donemListesi);
+                // localStorage.setItem("Notlar", JSON.stringify(donemListesi));
 
 
-                for (let index2 = 0; index2 < donem.DersListesi.length; index2++) {
-                    let ders = donem.DersListesi[index2];
-                    dersListesiHTMLStr = `
-                
-        <tr id="ders_tr_${ders.ID}">
-        <td>
-            <input style="width:100%; id="ders_Adi_${ders.ID}"; class="transparent-input col-2 col-lg-12 col-md-12 col-sm-6 " type=" text " placeholder="Ders ${index2 +1}">
-        </td>
-        <td>
-            <div style="align-items: center; " class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12">
-                    <select id="ddselect_kredi_${ders.ID}" class="form-control">
-                        <option value="">X</option>   
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                        <option value="10">10</option>
-                        <option value="11">11</option>
-                        <option value="12">12</option>
-                        <option value="13">13</option>
-                        <option value="14">14</option>
-                        <option value="15">15</option>
-                        <option value="16">16</option>
-                        <option value="17">17</option>
-                        <option value="18">18</option>
-                        <option value="19">19</option>
-                        <option value="20">20</option>
-                        <option value="21">21</option>
-                        <option value="22">22</option>
-                        <option value="23">23</option>
-                        <option value="24">24</option>
-                        <option value="25">25</option>
-                        <option value="26">26</option>
-                        <option value="27">27</option>
-                        <option value="28">28</option>
-                        <option value="29">29</option>
-                        <option value="30">30</option>
-                    </select>
-                </div>
-            </div>
-        </td>
-        <td>
-            <div class="row ">
-                <div class="col-lg-12 col-md-12 col-sm-12">
-                    <select id="ddselect_harf_${ders.ID}" class="form-control ">
-                            <option value="">X</option>          
-                            <option value="AA">AA</option>
-                            <option value="BA">BA</option>
-                            <option value="BB">BB</option>
-                            <option value="CB">CB</option>
-                            <option value="CC">CC</option>
-                            <option value="DC">DC</option>
-                            <option value="DD">DD</option>
-                            <option value="FD">FD</option>
-                            <option value="FF">FF</option>
-                        </select>
-                </div>
-            </div>
-        </td>
-        <td>
-            
-            <span id="delBtn_${ders.ID}" data-id="${ders.ID}" class="material-icons deleteDers">clear</span>
-        </td>
-    </tr>
-    
-                `;
+               
 
-                }
+                // let donemSec = document.getElementById("donem_tbody_" + `${donem.ID}`);
+                // donemSec.innerHTML += dersListesiHTMLStr;
+                // setClickEvents();
 
-                let donemSec = document.getElementById("donem_tbody_" + `${donem.ID}`);
-                donemSec.innerHTML += dersListesiHTMLStr;
-                setClickEvents();
-
-            });
+            //});
         }
     }
 
@@ -536,7 +489,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     function getFromUI() {
         var objFromStorage = JSON.parse(localStorage.getItem("Notlar"));
-        console.log(objFromStorage);
+        //console.log(objFromStorage);
     }
 
     getFromUI();
