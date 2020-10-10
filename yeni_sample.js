@@ -108,7 +108,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
             
                     <tr id="ders_tr_${ders.ID}">
                     <td>
-                        <input style="width:100%; id="ders_Adi_${ders.ID}"; class="transparent-input col-2 col-lg-12 col-md-12 col-sm-6 " type=" text " placeholder="Ders ${index2 +1}">
+                        <input style="width:100%;" name="DersAdi" id="ders_Adi_${ders.ID}"; class="transparent-input col-2 col-lg-12 col-md-12 col-sm-6 " type=" text " placeholder="Ders ${index2 +1}">
                     </td>
                     <td>
                         <div style="align-items: center; " class="row">
@@ -510,3 +510,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 
 });
+
+
+function denemeKodlari(){
+    // IDsini bildiğimiz dönemin içinde dönüp trleri alıyoruz...
+    $('#donem_tbody_BURAYAIDYAZ tr').each(function(index,item){
+        var $item = $(item);
+        var dersAdiInput = $item.find("td input[name='DersAdi']");
+        $(dersAdiInput).attr('placeholder',index+1+". Ders");
+     });
+}
