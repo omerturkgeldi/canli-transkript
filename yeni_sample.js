@@ -432,6 +432,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
         let birik_puan = 0;
         let birik_tam_akts = 0;
 
+        var localStorageValues = localStorage.getItem("Notlar");
+        if(localStorageValues != null){
+            donemListesi = JSON.parse(localStorageValues);
+        }
+
 
         for (let index = 0; index < donemListesi.length; index++) { // Dönem Sayısı
             let toplamDonemPuani = 0;
@@ -667,7 +672,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
                     <td>
                         <div class="row ">
                             <div class="col-lg-12 col-md-12 col-sm-12">
-                                <select id="ddselect_harf_${ders.ID}" class="form-control ">
+                                <select value="${ders.dersHarfNotu}" id="ddselect_harf_${ders.ID}" class="form-control dersHarfNotu">
                                         <option value="">X</option>          
                                         <option value="AA">AA</option>
                                         <option value="BA">BA</option>
@@ -738,6 +743,16 @@ document.addEventListener("DOMContentLoaded", function(event) {
             }
 
             document.getElementById("cont_1").innerHTML += htmlStr;
+
+            // Kredileri seçili olarak güncelle.
+            $.each($(".krediID"),function(index,item){
+                $(item).val($(item).attr('value'));
+            });
+
+            $.each($(".dersHarfNotu"),function(index,item){
+                $(item).val($(item).attr('value'));
+            });
+
 
             // console.log(donemListesi);
             // localStorage.setItem("Notlar", JSON.stringify(donemListesi));
