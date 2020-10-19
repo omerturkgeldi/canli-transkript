@@ -27,6 +27,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     //     getFromLocalStorage();
     // }
     hamburgerButton();
+    getFromLocalStorage();
 
     // donemEkle(order);
     // dersEkle(donemID);
@@ -107,6 +108,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
         donemSayisi = document.getElementById("donemGir").value;
         dersSayisi = document.getElementById("dersGir").value;
+        // dersSayisi = 5;
 
         for (let index = 0; index < donemSayisi; index++) { // 8- dönem sayısı
             var donem = donemEkle(index + 1);
@@ -200,7 +202,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
             }
 
             htmlStr += `
-            <div id="tableContainer_${index}" class="col-lg-6 col-md-6 col-sm-12 col-12">
+            <div id="tableContainer_${index}"class="col-lg-6 col-md-6 col-sm-12 col-12">
              
             <h1 style="background-color: rgb(0, 166, 164); text-align: center; margin: 0; color: rgb(232, 249, 250);" class="well-sm">
                 ${index+1}.Dönem <span class="material-icons dersEkleButton" data-id="${donem.ID}">add_circle_outline</span>
@@ -209,12 +211,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 <table class="table table-striped table-bordered col-lg-6" id="donem_table_${donem.ID}">
     
     
-                <thead>
+                <thead class="row">
                     <tr>
-                        <th class="col-lg-7 col-md-6 col-sm-8 col-2" style="text-align: center;">Ders Adı</th>
-                        <th class="col-lg-2 col-md-3 col-sm-2 col-5" style="text-align: center;">Kredi</th>
-                        <th class="col-lg-2 col-md-3 col-sm-2 col-5" style="text-align: center;">Not</th>
-                        <th class="col-lg-1" style="text-align: center;">Sil</th>
+                        <th class="col-lg-7 col-md-6 col-sm-8 col-xs-4 col-3" style="text-align: center;">Ders Adı</th>
+                        <th class="col-lg-2 col-md-3 col-sm-2 col-xs-3 col-4" style="text-align: center;">Kredi</th>
+                        <th class="col-lg-2 col-md-3 col-sm-2 col-xs-3 col-4" style="text-align: center;">Not</th>
+                        <th class="col-lg-1 col-md-1 col-sm-1 col-xs-1 col-1" style="text-align: center;">Sil</th>
                     </tr>
                 </thead>
                 <tbody data-id="${donem.ID}" id="donem_tbody_${donem.ID}">
@@ -225,13 +227,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
                         <table class="table table-striped ">
                             <thead>
                                 <th>Alınan Kredi</th>
-                                <th>YANO</th>
-                                <th>GANO</th>
+                                <th style="text-align: center">YANO</th>
+                                <th style="text-align: center">GANO</th>
                             </thead>
                             <tbody id="donem_notları_${donem.ID}">
                                 <td id="toplam_kredi_donem_${donem.ID}">---</td>
-                                <td id="yano_donem_${donem.ID}">---</td>
-                                <td id="gano_donem_${donem.ID}">---</td>
+                                <td style="text-align: center" id="yano_donem_${donem.ID}">---</td>
+                                <td style="text-align: center" id="gano_donem_${donem.ID}">---</td>
                             </tbody>
                         </table>
                         <!-- Dönem Bilgileri Bitiş -->
@@ -421,7 +423,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         //Localden tabloyu çekme
 
         $("#localStorageTabloBtn").click(function() {
-            getFromLocalStorage();
+            // getFromLocalStorage();
         });
 
     }
@@ -544,10 +546,15 @@ document.addEventListener("DOMContentLoaded", function(event) {
             if (donemListesi[index].gano < 2) {
                 document.getElementById("donem_notları_" + `${donem.ID}`).classList.add("alert");
                 document.getElementById("gano_donem_" + `${donem.ID}`).classList.add("alert-danger");
+            } else if (donemListesi[index].gano >= 3) {
+                document.getElementById("donem_notları_" + `${donem.ID}`).classList.add("alert");
+                document.getElementById("gano_donem_" + `${donem.ID}`).classList.add("alert-success");
             } else {
-                document.getElementById("donem_notları_" + `${donem.ID}`).classList.remove("alert");
-                document.getElementById("gano_donem_" + `${donem.ID}`).classList.remove("alert-danger");
+                document.getElementById("donem_notları_" + `${donem.ID}`).classList.add("alert");
+                document.getElementById("gano_donem_" + `${donem.ID}`).classList.add("alert-info");
             }
+
+
 
         }
 
@@ -584,7 +591,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         } else {
             var objFromStorage = JSON.parse(localStorage.getItem("Notlar"));
             donemListesi = objFromStorage;
-            
+
             console.log(objFromStorage);
 
             console.log(localStorage.getItem("Notlar").length == 0);
@@ -592,7 +599,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
             document.getElementById("cont_1").innerHTML = "";
             // donemListesi = [];
-            let baslik = `<h1 id="transcript" class=" container well well-sm col-lg-12">Canlı Transkript</h1>`;
+            let baslik = `<h1 id="transcript" class=" container well well-sm col-lg-12 col-md-12 col-sm-12 col-12">Canlı Transkript</h1>`;
             document.getElementById("cont_1").innerHTML = baslik;
 
             donemSayisi = objFromStorage.length;
@@ -600,15 +607,15 @@ document.addEventListener("DOMContentLoaded", function(event) {
             // dersSayisi = document.getElementById("dersGir").value;
 
 
-
-            let htmlStr = `<div class="row">`;
-            let dersListesiHTMLStr = ``;
+            // let htmlStr = `<div class="row">`;
+            let htmlStr = "";
             for (let index = 0; index < donemSayisi; index++) {
                 let donem = objFromStorage[index];
+                let dersListesiHTMLStr = "";
 
                 console.log(donem);
 
-                console.log(donem.DersListesi.length);
+                console.log("dönem.derslistesi.length", donem.DersListesi.length);
                 for (let index2 = 0; index2 < donem.DersListesi.length; index2++) {
                     let ders = donem.DersListesi[index2];
                     console.log(donem.gano);
@@ -625,7 +632,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
             
                     <tr id="ders_tr_${ders.ID}">
                     <td>
-                        <input style="width:100%;" name="DersAdi" id="ders_Adi_${ders.ID}"; class="transparent-input col-2 col-lg-12 col-md-12 col-sm-6 " type=" text " value="${ders.dersAdi}" placeholder="Ders ${index2 + 1}">
+                        <input style="width:100%;" name="DersAdi" id="ders_Adi_${ders.ID}"; class="transparent-input col-4 col-lg-12 col-md-12 col-sm-4 " type=" text " value="${ders.dersAdi}" placeholder="Ders ${index2 + 1}">
                     </td>
                     <td>
                         <div style="align-items: center; " class="row">
@@ -695,59 +702,63 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 }
 
                 htmlStr += `
-            <div id="tableContainer_${index}" class="col-lg-6 col-md-6 col-sm-12 col-12">
-             
-            <h1 style="background-color: rgb(0, 166, 164); text-align: center; margin: 0; color: rgb(232, 249, 250);" class="well-sm">
-                ${index+1}.Dönem <span class="material-icons dersEkleButton" data-id="${donem.ID}">add_circle_outline</span>
-            </h1>
-            
-                <table class="table table-striped table-bordered col-lg-6" id="donem_table_${donem.ID}">
-    
-    
-                <thead>
-                    <tr>
-                        <th class="col-lg-7 col-md-6 col-sm-8 col-2" style="text-align: center;">Ders Adı</th>
-                        <th class="col-lg-2 col-md-3 col-sm-2 col-5" style="text-align: center;">Kredi</th>
-                        <th class="col-lg-2 col-md-3 col-sm-2 col-5" style="text-align: center;">Not</th>
-                        <th class="col-lg-1" style="text-align: center;">Sil</th>
-                    </tr>
-                </thead>
-                <tbody data-id="${donem.ID}" id="donem_tbody_${donem.ID}">
-                    ${dersListesiHTMLStr}
-                </tbody>
-                </table>
-                <!-- Dönem Bilgileri  -->
-                        <table class="table table-striped ">
-                            <thead>
-                                <th>Alınan Kredi</th>
-                                <th>YANO</th>
-                                <th>GANO</th>
-                            </thead>
-                            <tbody id="donem_notları_${donem.ID}">
-                                <td id="toplam_kredi_donem_${donem.ID}">${donem.yariyilTamamlananAkts}</td>
-                                <td id="yano_donem_${donem.ID}">${donem.yano}</td>
-                                <td id="gano_donem_${donem.ID}">${donem.gano}</td>
-                            </tbody>
-                        </table>
-                        <!-- Dönem Bilgileri Bitiş -->
-    
-                </div>
-    
-        `;
+                    <div id="tableContainer_${index}" class="col-lg-6 col-md-6 col-sm-12 col-12">
 
+                    <h1 style="background-color: rgb(0, 166, 164); text-align: center; margin: 0; color: rgb(232, 249, 250);" class="well-sm">
+                        ${index+1}.Dönem <span class="material-icons dersEkleButton" data-id="${donem.ID}">add_circle_outline</span>
+                    </h1>
+
+                        <table class="table table-striped table-bordered col-lg-6" id="donem_table_${donem.ID}">
+
+
+                        <thead class="row">
+                            <tr>
+                                <th class="col-lg-7 col-md-6 col-sm-8 col-xs-4 col-3" style="text-align: center;">Ders Adı</th>
+                                <th class="col-lg-2 col-md-3 col-sm-2 col-xs-3 col-4" style="text-align: center;">Kredi</th>
+                                <th class="col-lg-2 col-md-3 col-sm-2 col-xs-3 col-4" style="text-align: center;">Not</th>
+                                <th class="col-lg-1 col-md-1 col-sm-1 col-xs-1 col-1" style="text-align: center;">Sil</th>
+                            </tr>
+                        </thead>
+                        <tbody data-id="${donem.ID}" id="donem_tbody_${donem.ID}">
+                            ${dersListesiHTMLStr}
+                        </tbody>
+                        </table>
+                        <!-- Dönem Bilgileri  -->
+                                <table class="table table-striped ">
+                                    <thead>
+                                        <th>Alınan Kredi</th>
+                                        <th style="text-align: center">YANO</th>
+                                        <th style="text-align: center">GANO</th>
+                                    </thead>
+                                    <tbody id="donem_notları_${donem.ID}">
+                                        <td id="toplam_kredi_donem_${donem.ID}">${donem.yariyilTamamlananAkts}</td>
+                                        <td style="text-align: center" id="yano_donem_${donem.ID}">${donem.yano}</td>
+                                        <td style="text-align: center" id="gano_donem_${donem.ID}">${donem.gano}</td>
+                                    </tbody>
+                                </table>
+                                <!-- Dönem Bilgileri Bitiş -->
+
+                        </div>
+
+                `;
 
 
             }
 
-            htmlStr += `</div>`;
+            // htmlStr += `</div>`;
             document.getElementById("cont_1").innerHTML += htmlStr;
 
+
+
+
+
+
             // Kredileri seçili olarak güncelle.
-            $.each($(".krediID"),function(index,item){
+            $.each($(".krediID"), function(index, item) {
                 $(item).val($(item).attr('value'));
             });
 
-            $.each($(".dersHarfNotu"),function(index,item){
+            $.each($(".dersHarfNotu"), function(index, item) {
                 $(item).val($(item).attr('value'));
             });
 
@@ -758,7 +769,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
             setClickEvents();
             guncelle_placeholder();
-
+            hesapla();
 
         }
 
