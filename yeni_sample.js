@@ -107,8 +107,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
         document.getElementById("cont_1").innerHTML = baslik;
 
         donemSayisi = document.getElementById("donemGir").value;
-        dersSayisi = document.getElementById("dersGir").value;
-        // dersSayisi = 5;
+        // dersSayisi = document.getElementById("dersGir").value;
+        dersSayisi = 5;
 
         for (let index = 0; index < donemSayisi; index++) { // 8- dönem sayısı
             var donem = donemEkle(index + 1);
