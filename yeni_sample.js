@@ -432,12 +432,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
         let birik_puan = 0;
         let birik_tam_akts = 0;
 
-        var localStorageValues = localStorage.getItem("Notlar");
-        if(localStorageValues != null){
-            donemListesi = JSON.parse(localStorageValues);
-        }
-
-
         for (let index = 0; index < donemListesi.length; index++) { // Dönem Sayısı
             let toplamDonemPuani = 0;
             let toplamDonemKredisi = 0;
@@ -589,6 +583,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
             alert("Kayıtlı Transkriptiniz Bulunmuyor...");
         } else {
             var objFromStorage = JSON.parse(localStorage.getItem("Notlar"));
+            donemListesi = objFromStorage;
+            
             console.log(objFromStorage);
 
             console.log(localStorage.getItem("Notlar").length == 0);
@@ -604,13 +600,14 @@ document.addEventListener("DOMContentLoaded", function(event) {
             // dersSayisi = document.getElementById("dersGir").value;
 
 
-            let htmlStr = ``;
+
+            let htmlStr = `<div class="row">`;
+            let dersListesiHTMLStr = ``;
             for (let index = 0; index < donemSayisi; index++) {
                 let donem = objFromStorage[index];
 
                 console.log(donem);
 
-                let dersListesiHTMLStr = ``;
                 console.log(donem.DersListesi.length);
                 for (let index2 = 0; index2 < donem.DersListesi.length; index2++) {
                     let ders = donem.DersListesi[index2];
@@ -742,6 +739,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
             }
 
+            htmlStr += `</div>`;
             document.getElementById("cont_1").innerHTML += htmlStr;
 
             // Kredileri seçili olarak güncelle.
