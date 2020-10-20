@@ -562,6 +562,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
         localStorage.setItem("Notlar", JSON.stringify(donemListesi));
         var objFromStorage = JSON.parse(localStorage.getItem("Notlar"));
 
+        grafik();
+
+
     }
 
 
@@ -770,7 +773,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
             setClickEvents();
             guncelle_placeholder();
             hesapla();
-
+            grafik();
         }
 
     }
@@ -796,3 +799,458 @@ function guncelle_placeholder() {
         });
     }
 }
+
+
+
+function grafik1() {
+    let myChart = document.getElementById('myChart').getContext('2d');
+
+
+    //Global Options
+    console.clear();
+
+
+    Chart.defaults.global.defaultFontFamily = 'Lato';
+    Chart.defaults.global.defaultFontSize = 12;
+    Chart.defaults.global.defaultFontColor = '#777';
+    let massPopChart = new Chart(myChart, {
+        type: 'line', //bar,horizontalBar,pie,line,doughnut,radar,polarArea
+        data: {
+            labels: [],
+            datasets: [{
+                label: 'Population',
+                data: [
+                    617594,
+                    181045,
+                    153060,
+                    106519,
+                    105162,
+                    95072
+                ],
+                // backgroundColor: 'green'
+                backgroundColor: [
+                    'rgba(255,99,132,0.6)',
+                    'rgba(54,162,235,0.6)',
+                    'rgba(255,206,86,0.6)',
+                    'rgba(75,192,192,0.6)',
+                    'rgba(153,102,255,0.6)',
+                    'rgba(255,159,64,0.6)',
+                    'rgba(255,99,132,0.6)',
+                    'rgba(153,102,255,0.6)',
+                    'rgba(153,102,255,0.6)',
+                    'rgba(153,102,255,0.6)'
+                ],
+                // borderWidth: 1,
+                // borderColor: '#777',
+                // hoverBorderWidth: 3,
+                // hoverBorderColor: '#black'
+            }]
+        },
+        options: {
+            title: {
+                display: true,
+                text: 'Largest Cities in Massachussetts',
+                fontSize: 25
+            },
+            legend: {
+                display: true,
+                position: 'right',
+                labels: {
+                    fontColor: 'black'
+                }
+            },
+            layout: {
+                padding: {
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    top: 0
+                }
+            },
+            tooltips: {
+                enabled: true
+            }
+        }
+    });
+
+
+    for (let index2 = 0; index2 < donemListesi[1].DersListesi.length; index2++) {
+
+        console.log(donemListesi[1].DersListesi[index2].dersAdi);
+        massPopChart.data.labels.push(donemListesi[1].DersListesi[index2].dersHarfNotu);
+        console.log(massPopChart.options.title.text)
+
+    }
+
+    massPopChart.options.title.text = `${donemListesi[1].DonemAdi}`
+
+
+}
+
+
+
+function grafik() {
+    let myChartYano = document.getElementById('myChartYano').getContext('2d');
+    let myChartGano = document.getElementById('myChartGano').getContext('2d');
+
+    //Global Options
+    console.clear();
+
+
+    Chart.defaults.global.defaultFontFamily = 'Lato';
+    Chart.defaults.global.defaultFontSize = 12;
+    Chart.defaults.global.defaultFontColor = 'black';
+    let yanoChart = new Chart(myChartYano, {
+        type: 'line', //bar,horizontalBar,pie,line,doughnut,radar,polarArea
+        data: {
+            labels: [],
+            datasets: [{
+                label: 'YANO',
+                data: [
+
+                ],
+                // backgroundColor: 'green'
+                backgroundColor: [
+                    'rgba(255,206,86,0.6)',
+                    'rgba(54,162,235,0.6)',
+                    'rgba(255,206,86,0.6)',
+                    'rgba(75,192,192,0.6)',
+                    'rgba(153,102,255,0.6)',
+                    'rgba(255,159,64,0.6)',
+                    'rgba(255,99,132,0.6)',
+                    'rgba(153,102,255,0.6)',
+                    'rgba(153,102,255,0.6)',
+                    'rgba(153,102,255,0.6)'
+                ],
+                // borderWidth: 1,
+                // borderColor: '#777',
+                // hoverBorderWidth: 3,
+                // hoverBorderColor: '#black'
+            }]
+        },
+        options: {
+            title: {
+                display: true,
+                text: 'Largest Cities in Massachussetts',
+                fontSize: 35
+            },
+            legend: {
+                display: true,
+                position: 'bottom',
+                labels: {
+                    fontColor: 'black'
+                }
+            },
+            layout: {
+                padding: {
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    top: 0
+                }
+            },
+            tooltips: {
+                enabled: true
+            },
+            scales: {
+                xAxes: [{
+                    display: true,
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Dönemler'
+                    }
+                }],
+                yAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Ortalama',
+                        fontSize: 18,
+                    },
+                    ticks: {
+                        // beginAtZero: true,
+                        // stepSize: 0.3,
+                        // max: 4,
+
+                    }
+                }]
+            }
+        }
+    });
+
+
+    let ganoChart = new Chart(myChartGano, {
+        type: 'line', //bar,horizontalBar,pie,line,doughnut,radar,polarArea
+        data: {
+            labels: [],
+            datasets: [{
+                label: 'GANO',
+                data: [
+
+                ],
+                // backgroundColor: 'green'
+                backgroundColor: [
+                    'rgba(153,102,255,0.6)',
+                    'rgba(54,162,235,0.6)',
+                    'rgba(255,206,86,0.6)',
+                    'rgba(75,192,192,0.6)',
+                    'rgba(153,102,255,0.6)',
+                    'rgba(255,159,64,0.6)',
+                    'rgba(255,99,132,0.6)',
+                    'rgba(153,102,255,0.6)',
+                    'rgba(153,102,255,0.6)',
+                    'rgba(153,102,255,0.6)'
+                ],
+                // borderWidth: 1,
+                // borderColor: '#777',
+                // hoverBorderWidth: 3,
+                // hoverBorderColor: '#black'
+            }]
+        },
+        options: {
+            title: {
+                display: true,
+                text: 'Largest Cities in Massachussetts',
+                fontSize: 35
+            },
+            legend: {
+                display: true,
+                position: 'bottom',
+                labels: {
+                    fontColor: 'black'
+                }
+            },
+            layout: {
+                padding: {
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    top: 0
+                }
+            },
+            tooltips: {
+                enabled: true
+            },
+            scales: {
+                xAxes: [{
+                    display: true,
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Dönemler'
+                    }
+                }],
+                yAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Ortalama',
+                        fontSize: 18,
+                    },
+                    ticks: {
+                        // beginAtZero: true,
+                        // steps: 100,
+                        // stepValue: 100,
+                        stepSize: 0.1,
+                        // max: 4,
+                        // min: 2
+
+                    }
+                }]
+            }
+        }
+    });
+
+
+    for (let index = 0; index < donemListesi.length; index++) {
+
+        // massPopChart.options.title.text = `${donemListesi[1].DonemAdi}`
+        yanoChart.options.title.text = 'YANO Grafiği';
+        yanoChart.data.datasets[0].data.push(Number(donemListesi[index].yano));
+        console.log(yanoChart.data.datasets[0].data);
+        yanoChart.data.labels.push(donemListesi[index].DonemAdi);
+
+        ganoChart.options.title.text = 'GANO Grafiği';
+        ganoChart.data.datasets[0].data.push(Number(donemListesi[index].gano));
+        ganoChart.data.labels.push(donemListesi[index].DonemAdi);
+
+    }
+
+
+
+    console.log(yanoChart.data.labels);
+    console.log();
+    yanoChart.update();
+    ganoChart.update();
+
+
+    for (let index = 0; index < donemListesi.length; index++) {
+        let donem = donemListesi[index];
+
+        for (let index2 = 0; index2 < donem.DersListesi.length; index2++) {
+            let myChartGano = document.getElementById('myChartGano').getContext('2d');
+
+
+
+            Chart.defaults.global.defaultFontFamily = 'Lato';
+            Chart.defaults.global.defaultFontSize = 12;
+            Chart.defaults.global.defaultFontColor = 'black';
+            let myChartHarfNotu = new Chart(myCharetYano, {
+                type: 'line', //bar,horizontalBar,pie,line,doughnut,radar,polarArea
+                data: {
+                    labels: [],
+                    datasets: [{
+                        label: 'YANO',
+                        data: [
+
+                        ],
+                        // backgroundColor: 'green'
+                        backgroundColor: [
+                            'rgba(255,206,86,0.6)',
+                            'rgba(54,162,235,0.6)',
+                            'rgba(255,206,86,0.6)',
+                            'rgba(75,192,192,0.6)',
+                            'rgba(153,102,255,0.6)',
+                            'rgba(255,159,64,0.6)',
+                            'rgba(255,99,132,0.6)',
+                            'rgba(153,102,255,0.6)',
+                            'rgba(153,102,255,0.6)',
+                            'rgba(153,102,255,0.6)'
+                        ],
+                        // borderWidth: 1,
+                        // borderColor: '#777',
+                        // hoverBorderWidth: 3,
+                        // hoverBorderColor: '#black'
+                    }]
+                },
+                options: {
+                    title: {
+                        display: true,
+                        text: 'Largest Cities in Massachussetts',
+                        fontSize: 35
+                    },
+                    legend: {
+                        display: true,
+                        position: 'bottom',
+                        labels: {
+                            fontColor: 'black'
+                        }
+                    },
+                    layout: {
+                        padding: {
+                            left: 0,
+                            right: 0,
+                            bottom: 0,
+                            top: 0
+                        }
+                    },
+                    tooltips: {
+                        enabled: true
+                    },
+                    scales: {
+                        xAxes: [{
+                            display: true,
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Dönemler'
+                            }
+                        }],
+                        yAxes: [{
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Ortalama',
+                                fontSize: 18,
+                            },
+                            ticks: {
+                                // beginAtZero: true,
+                                // stepSize: 0.3,
+                                // max: 4,
+
+                            }
+                        }]
+                    }
+                }
+            });
+
+
+
+
+
+
+        }
+    }
+
+
+
+
+}
+
+
+
+
+
+// function grafik() {
+
+//     am4core.ready(function() {
+
+//         // Themes begin
+//         am4core.useTheme(am4themes_animated);
+//         // Themes end
+
+//         // Create chart instance
+//         var chart = am4core.create("chartdiv", am4charts.XYChart);
+
+//         // Add data
+//         chart.data = [{
+//             "donem": "1.D",
+//             "yano": 3.10
+//         }, {
+//             "donem": "2.D",
+//             "yano": 3.15
+//         }, {
+//             "donem": "3.D",
+//             "yano": 3.47
+//         }, {
+//             "donem": "4.D",
+//             "yano": 2.60
+//         }, {
+//             "donem": "5.D",
+//             "yano": 3.78
+//         }, {
+//             "donem": "6.D",
+//             "yano": 3.24
+//         }, {
+//             "donem": "7.D",
+//             "yano": 2.89
+//         }, {
+//             "donem": "8.D",
+//             "yano": 3.67
+//         }];
+
+//         // Create axes
+
+//         var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+//         categoryAxis.dataFields.category = "donem";
+//         categoryAxis.renderer.grid.template.location = 0;
+//         categoryAxis.renderer.minGridDistance = 30;
+
+//         categoryAxis.renderer.labels.template.adapter.add("dy", function(dy, target) {
+//             if (target.dataItem && target.dataItem.index & 2 == 2) {
+//                 return dy + 25;
+//             }
+//             return dy;
+//         });
+
+//         var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+
+//         // Create series
+//         var series = chart.series.push(new am4charts.ColumnSeries());
+//         series.dataFields.valueY = "yano";
+//         series.dataFields.categoryX = "donem";
+//         series.name = "Visits";
+//         series.columns.template.tooltipText = "{categoryX}: [bold]{valueY}[/]";
+//         series.columns.template.fillOpacity = .8;
+
+//         var columnTemplate = series.columns.template;
+//         columnTemplate.strokeWidth = 2;
+//         columnTemplate.strokeOpacity = 1;
+
+//     });
+// }

@@ -11,16 +11,27 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+    <script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
+    <script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
 
 
-    <title>Document</title>
+
+    <!-- <script type="text/javascript" src="//www.shieldui.com/shared/components/latest/js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="//www.shieldui.com/shared/components/latest/js/shieldui-all.min.js"></script> -->
+
+    <title>Canlı Transkript</title>
     <script src="yeni_sample.js"></script>
+    <script src="grafik.html"></script>
+
 </head>
 
 <body>
 
     <!-- Navbar -->
-    <nav class="navbar">
+    <nav id="navbar" class="navbar">
         <div class="brand-title">Canlı Transkript</div>
 
         <a href="#" class="toggle-button">
@@ -32,9 +43,9 @@
 
         <div class="navbar-links">
             <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Contact</a></li>
+                <li><a href="#tabloBurayaGelir">Transkript</a></li>
+                <li><a href="#grafikBurayaGelir">GANO-YANO Grafiği</a></li>
+                <li><a href="#">Harf Notu Grafikleri</a></li>
 
             </ul>
         </div>
@@ -48,7 +59,7 @@
     <div class="container ">
         <div class="jumbotron jumbotron-fluid col-7">
             <div class="container">
-                <h1 class="display-4">Fluid jumbotron</h1>
+                <h1 class="display-4">Live Transcript</h1>
                 <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
             </div>
         </div>
@@ -79,15 +90,62 @@
     <hr>
 
 
-    <div class="row">
-        <div class="container cont_1" id="cont_1">
+    <div id="tabloBurayaGelir" class="container">
+        <div class=" cont_1" id="cont_1">
             <!-- <h1 id="transcript" class=" container well well-sm col-lg-12">Canlı Transkript</h1> -->
         </div>
     </div>
 
     <div class="container">
-        <button id="hesaplaBtn" class="btn btn-danger btn-lg">Hesapla</button>
+        <button id="hesaplaBtn" class="btn btn-danger btn-lg">HESAPLA</button>
     </div>
+
+
+
+
+
+    <!-- <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-xs-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3>Multiple Line Series</h3>
+                    </div>
+                    <div id="chart2" class="panel-body">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+
+
+
+    <div id="grafikBurayaGelir" class="container">
+        <div class="row">
+            <div class="col-md-8 col-xs-8 col-lg-2 col-xl-10" id="chartdiv" style="width: 50%; height: 10px;"></div>
+        </div>
+    </div>
+
+
+
+    <div class="container">
+        <div class="chartContainer row col-lg-12 col-md-12 col-sm-12 ">
+            <canvas id="myChartYano">
+
+            </canvas>
+            <br><br>
+            <canvas id="myChartGano">
+            
+            </canvas>
+            <br><br>
+            <canvas id="myChartHarfNotu_1">
+
+            </canvas>
+        </div>
+    </div>
+    <br><br><br><br><br><br>
+
 
 
     <!-- 
