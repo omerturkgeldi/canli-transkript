@@ -1,0 +1,151 @@
+{{define "homeIndex"}}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="/static/css/transkript.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+    <script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
+    <script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+
+
+
+    <!-- <script type="text/javascript" src="//www.shieldui.com/shared/components/latest/js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="//www.shieldui.com/shared/components/latest/js/shieldui-all.min.js"></script> -->
+
+    <title>Canlı Transkript</title>
+    <script src="/static/js/transkript.js"></script>
+    <!-- <script src="grafik.html"></script> -->
+
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav id="navbar" class="navbar">
+        <div class="brand-title">Canlı Transkript</div>
+
+        <a href="#" class="toggle-button">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+
+        </a>
+
+        <div class="navbar-links">
+            <ul>
+                <li><a href="#tabloBurayaGelir">Transkript</a></li>
+                <li><a href="#grafikBurayaGelir">GANO-YANO Grafiği</a></li>
+                <li><a href="#">Harf Notu Grafikleri</a></li>
+
+            </ul>
+        </div>
+    </nav>
+    <!-- Navbar Bitiş -->
+
+
+
+
+
+    <div class="container ">
+        <div class="jumbotron jumbotron-fluid col-7">
+            <div class="container">
+                <h1 class="display-4">Live Transcript</h1>
+                <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+    <div id="tabloOlustur_formContainer" class="container col-4">
+        <div class="form-group">
+            <label>Dönem Sayısı:  </label>
+            <input type="text" class="form-control" id="donemGir" placeholder="Dönem Sayısını Giriniz">
+        </div>
+        <!-- <div class="form-group">
+            <label>Ders Sayısı:</label>
+            <input type="text" class="form-control" id="dersGir" placeholder="Ders Sayısını Giriniz">
+        </div>
+        <hr> -->
+        <button id="tabloGetirBtn" class="btn btn-danger btn-lg btn-block">Tablo Oluştur</button>
+        <!-- <br> -->
+        <!-- <button id="localStorageTabloBtn" class="btn btn-info btn-lg btn-block">Kayıtlı Tabloyu Getir</button> -->
+
+    </div>
+
+    <!-- <div class="panel ">
+            <h1>GANO: </h1>
+        </div> -->
+
+
+    <hr>
+
+
+    <div id="tabloBurayaGelir" class="container">
+        <div class=" cont_1" id="cont_1">
+            <!-- <h1 id="transcript" class=" container well well-sm col-lg-12">Canlı Transkript</h1> -->
+        </div>
+    </div>
+
+    <div class="container">
+        <button id="hesaplaBtn" class="btn btn-danger btn-lg">HESAPLA</button>
+    </div>
+
+
+
+
+
+    <!-- <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-xs-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3>Multiple Line Series</h3>
+                    </div>
+                    <div id="chart2" class="panel-body">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+
+
+
+    <div id="grafikBurayaGelir" class="container">
+        <div class="row">
+            <div class="col-md-8 col-xs-8 col-lg-2 col-xl-10" id="chartdiv" style="width: 50%; height: 10px;"></div>
+        </div>
+    </div>
+
+
+
+    <div class="container">
+        <div class="chartContainer row col-lg-12 col-md-12 col-sm-12 ">
+            <canvas id="myChartYano">
+
+            </canvas>
+            <br><br>
+            <canvas id="myChartGano">
+            
+            </canvas>
+            <br><br>
+            <canvas id="myChartHarfNotu_1">
+
+            </canvas>
+        </div>
+    </div>
+    <br><br><br><br><br><br>
+</body>
+</html>
+{{end}}
